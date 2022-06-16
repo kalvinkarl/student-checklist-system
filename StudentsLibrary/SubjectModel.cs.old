@@ -1,0 +1,28 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace StudentsLibrary
+{
+    public class SubjectModel
+    {
+        /// <summary>
+        /// Represents the name of the subject
+        /// </summary>
+        public string Name { get; set; }
+        /// <summary>
+        /// Represents the title of the subject
+        /// </summary>
+        public string Title { get; set; }
+        /// <summary>
+        /// Represents the description of the subject
+        /// </summary>
+        public string Description { get; set; }
+        /// <summary>
+        /// Represents the teacher of this subject
+        /// </summary>
+        public TeacherModel Teacher { get; set; }
+    }
+}

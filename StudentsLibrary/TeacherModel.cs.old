@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace StudentsLibrary
+{
+    public class TeacherModel
+    {
+        /// <summary>
+        /// Represents the first name of the teacher
+        /// </summary>
+        public string FirstName { get; set; }
+        /// <summary>
+        /// Represents the last name of the teacher
+        /// </summary>
+        public string LastName { get; set; }
+    }
+}
