@@ -8,5 +8,5 @@ This system will provide the college checklist to manipulate enrollment for chec
 - sections
 - subjects
 - teachers
-# Transaction:
+# Transaction
 - In enrollment the admin can assign subjects to a student
