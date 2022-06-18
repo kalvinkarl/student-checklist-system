@@ -13,11 +13,7 @@ namespace StudentsLibrary.DataAccess
     {
         private const string DBName = "Students";
 
-        /// <summary>
-        /// Saves a new student to database
-        /// </summary>
-        /// <param name="student">The student model</param>
-        /// <returns>The student information with ID</returns>
+
         public StudentModel CreateStudent(StudentModel student)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConString(DBName)))
@@ -33,11 +29,6 @@ namespace StudentsLibrary.DataAccess
                 return student;
             }
         }
-        /// <summary>
-        /// Saves a new teacher to database
-        /// </summary>
-        /// <param name="teacher">The teacher model</param>
-        /// <returns>The teacher information with ID</returns>
         public TeacherModel CreateTeacher(TeacherModel teacher)
         {
             using(IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConString(DBName)))
@@ -51,11 +42,6 @@ namespace StudentsLibrary.DataAccess
                 return teacher;
             }
         }
-        /// <summary>
-        /// Saves a new section to database
-        /// </summary>
-        /// <param name="section">The section model</param>
-        /// <returns>The section information with ID</returns>
         public SectionModel CreateSection(SectionModel section)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConString(DBName)))
@@ -69,11 +55,6 @@ namespace StudentsLibrary.DataAccess
                 return section;
             }
         }
-        /// <summary>
-        /// Save a new subject to database
-        /// </summary>
-        /// <param name="subject">The subject model</param>
-        /// <returns>The subject information with ID</returns>
         public SubjectModel CreateSubject(SubjectModel subject)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConString(DBName)))
@@ -87,10 +68,6 @@ namespace StudentsLibrary.DataAccess
                 return subject;
             }
         }
-        /// <summary>
-        /// Get all the student records from database to student model
-        /// </summary>
-        /// <returns>The collection of students</returns>
         public List<StudentModel> GetAllStudents()
         {
             using(IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConString(DBName)))
@@ -98,32 +75,6 @@ namespace StudentsLibrary.DataAccess
                 return connection.Query<StudentModel>("dbo.spStudents_GetAll").ToList();
             }
         }
-        /// <summary>
-        /// Get all the records of students who are currently enrolled
-        /// </summary>
-        /// <returns>The collection of students who are enrolled</returns>
-        public List<StudentModel> GetEnrolled()
-        {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConString(DBName)))
-            {
-                return connection.Query<StudentModel>("dbo.spStudents_GetByEnrolled").ToList();
-            }
-        }
-        /// <summary>
-        /// Get all the records of students who are not currently enrolled
-        /// </summary>
-        /// <returns>The collection of students who not are enrolled</returns>
-        public List<StudentModel> GetUnenrolled()
-        {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConString(DBName)))
-            {
-                return connection.Query<StudentModel>("dbo.spStudents_GetByUnenrolled").ToList();
-            }
-        }
-        /// <summary>
-        /// Get all the teacher records from database to teacher model
-        /// </summary>
-        /// <returns>The collection of teachers</returns>
         public List<TeacherModel> GetAllTeachers()
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConString(DBName)))
@@ -131,10 +82,6 @@ namespace StudentsLibrary.DataAccess
                 return connection.Query<TeacherModel>("dbo.spTeachers_GetAll").ToList();
             }
         }
-        /// <summary>
-        /// Get all the section records from database to section model
-        /// </summary>
-        /// <returns>The collection of sections</returns>
         public List<SectionModel> GetAllSections()
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConString(DBName)))
@@ -142,10 +89,6 @@ namespace StudentsLibrary.DataAccess
                 return connection.Query<SectionModel>("dbo.spSections_GetAll").ToList();
             }
         }
-        /// <summary>
-        /// Get all the subject records from database to subject model
-        /// </summary>
-        /// <returns>The collection of subjects</returns>
         public List<SubjectModel> GetAllSubjects()
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConString(DBName)))
@@ -153,11 +96,20 @@ namespace StudentsLibrary.DataAccess
                 return connection.Query<SubjectModel>("dbo.spSubjects_GetAll").ToList();
             }
         }
-        /// <summary>
-        /// Make a transaction of enrollment and save to database
-        /// </summary>
-        /// <param name="enrollment">The enrollment model</param>
-        /// <returns>The enrollment information</returns>
+        public List<StudentModel> GetEnrolled()
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConString(DBName)))
+            {
+                return connection.Query<StudentModel>("dbo.spStudents_GetByEnrolled").ToList();
+            }
+        }
+        public List<StudentModel> GetUnenrolled()
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConString(DBName)))
+            {
+                return connection.Query<StudentModel>("dbo.spStudents_GetByUnenrolled").ToList();
+            }
+        }
         public EnrollmentModel CreateEnrollment(EnrollmentModel enrollment)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConString(DBName)))
@@ -173,11 +125,6 @@ namespace StudentsLibrary.DataAccess
                 return enrollment;
             }
         }
-        /// <summary>
-        /// Get if student is enrolled using student ID
-        /// </summary>
-        /// <param name="StudentID">The student ID</param>
-        /// <returns>The enrollment informations</returns>
         public EnrollmentModel GetEnrollmentByStudent(int StudentID)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.ConString(DBName)))
@@ -191,5 +138,6 @@ namespace StudentsLibrary.DataAccess
                 //return connection.Query<EnrollmentModel>("dbo.spEnrollees_GetByStudentID").ToList();
             }
         }
+
     }
 }

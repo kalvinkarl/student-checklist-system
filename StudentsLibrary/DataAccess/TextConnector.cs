@@ -82,30 +82,6 @@ namespace StudentsLibrary.DataAccess
         {
             return StudentFile.FullFilePath().LoadFile().ConvertToStudentModel();
         }
-        public List<StudentModel> GetEnrolled()
-        {
-            List<EnrollmentModel> enrollees = EnrolledFile.FullFilePath().LoadFile().ConvertToEnrollmentModel(StudentFile, SectionFile, SubjectFile);
-            List<StudentModel> studentsEnrolled = new List<StudentModel>();
-            foreach(EnrollmentModel enrolled in enrollees)
-            {
-                studentsEnrolled.Add(enrolled.Student);
-            }
-            return studentsEnrolled;
-        }
-        public List<StudentModel> GetUnenrolled()
-        {
-            List<EnrollmentModel> enrollees = EnrolledFile.FullFilePath().LoadFile().ConvertToEnrollmentModel(StudentFile, SectionFile, SubjectFile);
-            List<StudentModel> students = StudentFile.FullFilePath().LoadFile().ConvertToStudentModel();
-            List<StudentModel> studentsUnenrolled = new List<StudentModel>();
-            foreach(StudentModel student in students)
-            {
-                if(enrollees.Where(e => e.Student.ID == student.ID).ToList().Count == 0)
-                {
-                    studentsUnenrolled.Add(student);
-                }
-            }
-            return studentsUnenrolled;
-        }
         public List<TeacherModel> GetAllTeachers()
         {
             return TeacherFile.FullFilePath().LoadFile().ConvertToTeacherModel();
@@ -117,6 +93,30 @@ namespace StudentsLibrary.DataAccess
         public List<SubjectModel> GetAllSubjects()
         {
             return SubjectFile.FullFilePath().LoadFile().ConverToSubjectModel();
+        }
+        public List<StudentModel> GetEnrolled()
+        {
+            List<EnrollmentModel> enrollees = EnrolledFile.FullFilePath().LoadFile().ConvertToEnrollmentModel(StudentFile, SectionFile, SubjectFile);
+            List<StudentModel> studentsEnrolled = new List<StudentModel>();
+            foreach (EnrollmentModel enrolled in enrollees)
+            {
+                studentsEnrolled.Add(enrolled.Student);
+            }
+            return studentsEnrolled;
+        }
+        public List<StudentModel> GetUnenrolled()
+        {
+            List<EnrollmentModel> enrollees = EnrolledFile.FullFilePath().LoadFile().ConvertToEnrollmentModel(StudentFile, SectionFile, SubjectFile);
+            List<StudentModel> students = StudentFile.FullFilePath().LoadFile().ConvertToStudentModel();
+            List<StudentModel> studentsUnenrolled = new List<StudentModel>();
+            foreach (StudentModel student in students)
+            {
+                if (enrollees.Where(e => e.Student.ID == student.ID).ToList().Count == 0)
+                {
+                    studentsUnenrolled.Add(student);
+                }
+            }
+            return studentsUnenrolled;
         }
         public EnrollmentModel CreateEnrollment(EnrollmentModel enrollment)
         {
